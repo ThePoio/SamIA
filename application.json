@@ -21,7 +21,7 @@
   "icon": "saturn",
   "pages": [
     {
-      "id": "Page1",
+      "id": "IU_Admin",
       "isDefault": true
     }
   ],

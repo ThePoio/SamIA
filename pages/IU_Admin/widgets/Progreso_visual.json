@@ -1,0 +1,46 @@
+{
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 64,
+  "counterClosewise": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "fillColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "progress"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "fillColor": "{{appsmith.theme.colors.primaryColor}}",
+  "isCanvas": false,
+  "isIndeterminate": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "gf1xszc9ac",
+  "leftColumn": 0,
+  "mobileBottomRow": 68,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 28,
+  "mobileTopRow": 64,
+  "needsErrorInfo": false,
+  "originalBottomRow": 64,
+  "originalTopRow": 60,
+  "parentColumnSpace": 19.8125,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "progress": "{{ Table_Seguimiento.selectedRow.porcentaje_avance }}",
+  "progressType": "linear",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 28,
+  "showResult": false,
+  "steps": 1,
+  "topRow": 60,
+  "type": "PROGRESS_WIDGET",
+  "version": 1,
+  "widgetId": "wp46otino1",
+  "widgetName": "Progreso_visual"
+}
