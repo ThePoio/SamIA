@@ -1,0 +1,26 @@
+BEGIN;
+
+-- 1. Eliminar el historial de revisiones asociado a las evidencias de esta tarea
+DELETE FROM historial_revisiones 
+WHERE evidencia_id IN (
+    SELECT id 
+    FROM evidencias 
+    WHERE tarea_id IN (
+        SELECT id FROM tareas WHERE titulo = 'LISTAS_ASISTENCIA'
+    )
+);
+
+-- 2. Eliminar los registros de evidencias subidos para esta tarea
+DELETE FROM evidencias 
+WHERE tarea_id IN (
+    SELECT id FROM tareas WHERE titulo = 'LISTAS_ASISTENCIA'
+);
+
+-- 3. Restablecer el estado de la tarea a 'PENDIENTE' y renovar la fecha límite
+UPDATE tareas 
+SET 
+    estado = 'PENDIENTE',
+    fecha_limite = CURRENT_TIMESTAMP + INTERVAL '3 days'
+WHERE titulo = 'LISTAS_ASISTENCIA';
+
+COMMIT;

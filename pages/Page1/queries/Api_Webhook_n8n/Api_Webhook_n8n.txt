@@ -1,0 +1,7 @@
+{
+  "evidencia_id": "{{ this.params.evidencia_id }}",
+  "tarea_id": "{{ this.params.tarea_id }}",
+  "nombre_archivo": "{{ this.params.nombre_archivo }}",
+  "tipo_mime": "{{ this.params.tipo_mime }}",
+  "base64_data": "{{ this.params.base64_data }}"
+}

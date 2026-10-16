@@ -1,0 +1,16 @@
+SELECT 
+    r.id AS triaje_id,
+    e.nombre_archivo,
+    a.codigo_actividad,
+    a.descripcion_actividad,
+    r.coherencia_actividad_vs_recomendacion,
+    r.coherencia_evidencia_vs_actividad,
+    r.coherencia_formato_entregado,
+    r.alertas_inconsistencia,
+    r.sugerencia_asistente,
+    r.procesado_en
+FROM revisiones_asistente_ia r
+JOIN evidencias_documentales e ON r.evidencia_id = e.id
+JOIN actividades_comprometidas a ON e.actividad_id = a.id
+ORDER BY r.procesado_en DESC
+LIMIT 1;

@@ -1,0 +1,14 @@
+SELECT 
+    e.id AS evidencia_id,
+    e.nombre_archivo,
+    e.estado_revision,
+    r.sugerencia_asistente,
+    r.coherencia_actividad_vs_recomendacion,
+    r.coherencia_evidencia_vs_actividad,
+    r.coherencia_formato_entregado,
+    r.alertas_inconsistencia,
+    r.tokens_usados
+FROM evidencias_documentales e
+JOIN revisiones_asistente_ia r ON e.id = r.evidencia_id
+ORDER BY r.procesado_en DESC
+LIMIT 1;

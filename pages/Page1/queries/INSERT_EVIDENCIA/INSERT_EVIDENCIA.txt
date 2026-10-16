@@ -1,0 +1,19 @@
+INSERT INTO evidencias_documentales (
+    actividad_id,
+    usuario_id,
+    nombre_archivo,
+    ruta_almacenamiento,
+    tipo_mime,
+    estado_revision
+) VALUES (
+    NULLIF('{{ Select_Actividad.selectedOptionValue }}', '')::uuid,
+    COALESCE(
+        (SELECT id FROM usuarios WHERE email = '{{ appsmith.user.email }}'),
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'::uuid
+    ),
+    '{{ FilePicker_Evidencia.files[0]?.name || "evidencia_adjunta.png" }}',
+    '/storage/evidencias/{{ FilePicker_Evidencia.files[0]?.name || "evidencia_adjunta.png" }}',
+    '{{ FilePicker_Evidencia.files[0]?.type || "image/png" }}',
+    'PENDIENTE'
+)
+RETURNING id AS evidencia_id, actividad_id;

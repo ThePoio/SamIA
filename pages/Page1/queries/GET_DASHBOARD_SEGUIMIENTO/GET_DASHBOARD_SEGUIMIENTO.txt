@@ -1,0 +1,19 @@
+SELECT 
+    area_nombre,
+    codigo_auditoria,
+    codigo_recomendacion,
+    codigo_actividad,
+    descripcion_actividad,
+    responsable_nombre,
+    fecha_inicio,
+    fecha_fin_programada,
+    porcentaje_avance,
+    semaforo_estado,
+    dias_retraso
+FROM vista_seguimiento_global
+ORDER BY 
+    CASE 
+        WHEN semaforo_estado = 'ROJO_RETRASADO' THEN 1
+        WHEN semaforo_estado = 'AMARILLO_RIESGO' THEN 2
+        ELSE 3
+    END ASC;

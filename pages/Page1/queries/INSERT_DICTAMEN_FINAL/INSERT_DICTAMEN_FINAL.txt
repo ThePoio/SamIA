@@ -1,0 +1,41 @@
+BEGIN;
+
+-- 1. Registrar dictamen formal del auditor
+INSERT INTO dictamenes_finales (
+    evidencia_id,
+    auditor_id,
+    dictamen,
+    comentarios_auditor
+) VALUES (
+    '{{ Select_Evidencia_Pendiente.selectedOptionValue }}'::uuid,
+    COALESCE(
+        (SELECT id FROM usuarios WHERE email = '{{ appsmith.user.email }}'),
+        'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'::uuid
+    ),
+    '{{ Select_Dictamen_Final.selectedOptionValue }}',
+    '{{ Input_Comentarios_Auditor.text }}'
+);
+
+-- 2. Cambiar estado formal de la evidencia
+UPDATE evidencias_documentales
+SET estado_revision = '{{ Select_Dictamen_Final.selectedOptionValue }}'
+WHERE id = '{{ Select_Evidencia_Pendiente.selectedOptionValue }}'::uuid;
+
+-- 3. Si el dictamen es APROBADO, marcar la actividad al 100% de avance
+UPDATE actividades_comprometidas
+SET 
+    porcentaje_avance = CASE 
+        WHEN '{{ Select_Dictamen_Final.selectedOptionValue }}' = 'APROBADO' THEN 100.00
+        ELSE porcentaje_avance
+    END,
+    fecha_fin_real = CASE 
+        WHEN '{{ Select_Dictamen_Final.selectedOptionValue }}' = 'APROBADO' THEN CURRENT_DATE
+        ELSE fecha_fin_real
+    END
+WHERE id = (
+    SELECT actividad_id 
+    FROM evidencias_documentales 
+    WHERE id = '{{ Select_Evidencia_Pendiente.selectedOptionValue }}'::uuid
+);
+
+COMMIT;
