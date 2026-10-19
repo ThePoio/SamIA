@@ -1,0 +1,17 @@
+INSERT INTO agenda_mejora (
+    actividad_origen_id,
+    area_id,
+    actividad_propuesta,
+    plazo_dias_propuesto,
+    estado_propuesta
+) VALUES (
+    NULLIF('{{ Select_Actividad_Origen.selectedOptionValue }}', '')::uuid,
+    COALESCE(
+        NULLIF('{{ Select_Area_Mejora.selectedOptionValue }}', '')::uuid,
+        (SELECT area_responsable_id FROM actividades_comprometidas WHERE id = NULLIF('{{ Select_Actividad_Origen.selectedOptionValue }}', '')::uuid),
+        '11111111-1111-1111-1111-111111111111'::uuid
+    ),
+    '{{ Input_Actividad_Propuesta.text.replace(/'/g, "''") }}',
+    {{ NumberInput_Plazo_Dias.value || 30 }},
+    'PROPUESTA'
+);

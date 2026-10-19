@@ -23,6 +23,14 @@
     {
       "id": "IU_Admin",
       "isDefault": true
+    },
+    {
+      "id": "UI_Encargado",
+      "isDefault": false
+    },
+    {
+      "id": "Agenda_de_Mejora",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

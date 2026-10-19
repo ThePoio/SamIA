@@ -1,0 +1,12 @@
+SELECT 
+    am.id AS propuesta_id,
+    ar.nombre AS area_nombre,
+    COALESCE(ac.codigo_actividad, 'Sin origen directo') AS actividad_origen_codigo,
+    am.actividad_propuesta,
+    am.plazo_dias_propuesto,
+    am.estado_propuesta,
+    am.creado_en
+FROM agenda_mejora am
+JOIN areas ar ON am.area_id = ar.id
+LEFT JOIN actividades_comprometidas ac ON am.actividad_origen_id = ac.id
+ORDER BY am.creado_en DESC;

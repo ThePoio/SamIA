@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 27,
+  "bottomRow": 16,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -33,8 +33,8 @@
   "mobileRightColumn": 16,
   "mobileTopRow": 12,
   "needsErrorInfo": false,
-  "originalBottomRow": 67,
-  "originalTopRow": 63,
+  "originalBottomRow": 28,
+  "originalTopRow": 21,
   "overflow": "NONE",
   "parentColumnSpace": 5.259765625,
   "parentId": "djmkjx9hxc",
@@ -46,10 +46,10 @@
   "text": "{{ GET_DETALLE_TRIAJE.data[0]?.alertas_inconsistencia || 'Sin alertas' }}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 23,
+  "topRow": 12,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
   "widgetId": "5cledqbuw5",
-  "widgetName": "Text3"
+  "widgetName": "Alerta"
 }

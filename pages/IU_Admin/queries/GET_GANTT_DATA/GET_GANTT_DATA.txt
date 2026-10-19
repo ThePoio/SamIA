@@ -1,0 +1,13 @@
+SELECT 
+    actividad_id,
+    codigo_actividad,
+    descripcion_actividad,
+    area_nombre,
+    responsable_nombre,
+    TO_CHAR(fecha_inicio, 'YYYY-MM-DD') AS fecha_inicio,
+    TO_CHAR(fecha_fin_programada, 'YYYY-MM-DD') AS fecha_fin_programada,
+    porcentaje_avance,
+    semaforo_estado,
+    (fecha_fin_programada - fecha_inicio) AS duracion_dias
+FROM vista_seguimiento_global
+ORDER BY fecha_inicio ASC;

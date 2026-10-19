@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 21,
+  "bottomRow": 6,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -14,42 +14,50 @@
     },
     {
       "key": "text"
+    },
+    {
+      "key": "textColor"
     }
   ],
   "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicPropertyPathList": [
+    {
+      "key": "textColor"
+    }
+  ],
   "dynamicTriggerPathList": [],
   "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
   "fontSize": "1rem",
   "fontStyle": "BOLD",
   "isLoading": false,
   "isVisible": true,
-  "key": "v8zzu1oju3",
-  "leftColumn": 0,
+  "key": "8jiiix4589",
+  "leftColumn": 8,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 10,
-  "mobileLeftColumn": 0,
-  "mobileRightColumn": 16,
-  "mobileTopRow": 6,
+  "mobileBottomRow": 6,
+  "mobileLeftColumn": 22,
+  "mobileRightColumn": 38,
+  "mobileTopRow": 2,
   "needsErrorInfo": false,
-  "originalBottomRow": 61,
-  "originalTopRow": 6,
+  "originalBottomRow": 6,
+  "originalTopRow": 2,
   "overflow": "NONE",
-  "parentColumnSpace": 5.259765625,
-  "parentId": "djmkjx9hxc",
+  "parentColumnSpace": 6.6484375,
+  "parentId": "6wuvqgiu06",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 58,
+  "rightColumn": 59,
   "shouldTruncate": false,
-  "text": "{{ GET_DETALLE_TRIAJE.data[0]?.coherencia_evidencia_vs_actividad?.observacion || 'Sin datos' }}\t\t",
+  "text": "{{ GET_ULTIMA_EVALUACION.data[0]?.dictamen || 'SIN EVALUACIÓN' }}",
   "textAlign": "LEFT",
-  "textColor": "#231F20",
-  "topRow": 6,
+  "textColor": "{{ \n  GET_ULTIMA_EVALUACION.data[0]?.dictamen === 'APROBADO' ? '#d4edda' : \n  GET_ULTIMA_EVALUACION.data[0]?.dictamen === 'RECHAZADO' ? '#f8d7da' : '#fff3cd' \n}}",
+  "topRow": 2,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,
-  "widgetId": "ikk6jkxxuz",
-  "widgetName": "Text2"
+  "widgetId": "9rdjxf1khp",
+  "widgetName": "Header"
 }

@@ -1,0 +1,13 @@
+SELECT 
+    id AS notificacion_id,
+    tipo_notificacion,
+    mensaje,
+    leido,
+    enviado_en
+FROM notificaciones_alertas
+WHERE usuario_destino_id = COALESCE(
+    (SELECT id FROM usuarios WHERE email = '{{ appsmith.user.email }}'),
+    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'::uuid
+)
+ORDER BY enviado_en DESC
+LIMIT 20;

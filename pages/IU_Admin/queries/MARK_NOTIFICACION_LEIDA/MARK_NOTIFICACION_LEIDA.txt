@@ -1,0 +1,3 @@
+UPDATE notificaciones_alertas
+SET leido = TRUE
+WHERE id = '{{ Table_Notificaciones.selectedRow.notificacion_id }}'::uuid;

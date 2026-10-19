@@ -1,0 +1,3 @@
+UPDATE agenda_mejora
+SET estado_propuesta = '{{ Select_Nuevo_Estado_Mejora.selectedOptionValue }}'
+WHERE id = '{{ Table_Agenda_Mejora.selectedRow.propuesta_id }}'::uuid;

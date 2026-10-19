@@ -1,6 +1,6 @@
 {
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 64,
+  "bottomRow": 59,
   "counterClosewise": false,
   "dynamicBindingPathList": [
     {
@@ -26,8 +26,8 @@
   "mobileRightColumn": 28,
   "mobileTopRow": 64,
   "needsErrorInfo": false,
-  "originalBottomRow": 64,
-  "originalTopRow": 60,
+  "originalBottomRow": 60,
+  "originalTopRow": 56,
   "parentColumnSpace": 19.8125,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -35,10 +35,10 @@
   "progressType": "linear",
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
-  "rightColumn": 28,
+  "rightColumn": 64,
   "showResult": false,
   "steps": 1,
-  "topRow": 60,
+  "topRow": 55,
   "type": "PROGRESS_WIDGET",
   "version": 1,
   "widgetId": "wp46otino1",
