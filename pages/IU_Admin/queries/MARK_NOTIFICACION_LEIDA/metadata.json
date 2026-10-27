@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "UPDATE notificaciones_alertas\nSET leido = TRUE\nWHERE id = '{{ Table_Notificaciones.selectedRow.notificacion_id }}'::uuid;",
+      "body": "UPDATE notificaciones_alertas n\nSET leido = TRUE\nFROM usuarios u\nWHERE n.id = {{ Table_Notificaciones.triggeredRow.notificacion_id }}::uuid\n  AND u.id = n.usuario_destino_id\n  AND u.email = {{ appsmith.user.email }};",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

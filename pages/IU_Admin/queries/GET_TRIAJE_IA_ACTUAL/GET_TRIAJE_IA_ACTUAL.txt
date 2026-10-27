@@ -1,4 +1,4 @@
-SELECT 
+SELECT
     r.id AS triaje_id,
     e.nombre_archivo,
     a.codigo_actividad,
@@ -10,7 +10,9 @@ SELECT
     r.sugerencia_asistente,
     r.procesado_en
 FROM revisiones_asistente_ia r
-JOIN evidencias_documentales e ON r.evidencia_id = e.id
-JOIN actividades_comprometidas a ON e.actividad_id = a.id
+JOIN evidencias_documentales e ON e.id = r.evidencia_id
+JOIN actividades_comprometidas a ON a.id = e.actividad_id
+JOIN usuarios u ON u.id = e.usuario_id
+WHERE u.email = {{ appsmith.user.email }}
 ORDER BY r.procesado_en DESC
 LIMIT 1;

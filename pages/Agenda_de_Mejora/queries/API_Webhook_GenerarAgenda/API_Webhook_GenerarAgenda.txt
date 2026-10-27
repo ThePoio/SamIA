@@ -1,0 +1,5 @@
+{
+  "pdf_base64": "{{ FilePicker_PDF_Recomendaciones.files[0]?.data }}",
+  "nombre_archivo": "{{ FilePicker_PDF_Recomendaciones.files[0]?.name }}",
+  "fecha_limite": "{{ DatePicker_FechaLimiteGlobal.selectedDate }}"
+}

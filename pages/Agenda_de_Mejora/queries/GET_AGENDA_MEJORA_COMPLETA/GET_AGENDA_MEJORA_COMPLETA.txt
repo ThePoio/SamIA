@@ -1,0 +1,14 @@
+SELECT 
+    am.id AS propuesta_id,
+    am.area_id,
+    ar.nombre AS area_nombre,
+    am.actividad_propuesta,
+    am.complejidad,
+    am.plazo_dias_propuesto,
+    am.justificacion_ia,
+    am.estado_propuesta,
+    (CURRENT_DATE + (am.plazo_dias_propuesto || ' days')::interval)::date AS fecha_entrega_calculada,
+    am.creado_en
+FROM agenda_mejora am
+JOIN areas ar ON am.area_id = ar.id
+ORDER BY am.creado_en DESC;

@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n    actividad_id,\n    codigo_actividad,\n    descripcion_actividad,\n    codigo_recomendacion,\n    formato_solicitado,\n    fecha_fin_programada,\n    semaforo_estado\nFROM vista_seguimiento_global\nWHERE responsable_email = '{{ appsmith.user.email }}'\n   OR '{{ appsmith.user.email }}' = ''\n   OR responsable_email IS NOT NULL\nORDER BY fecha_fin_programada ASC;",
+      "body": "SELECT\n    actividad_id,\n    codigo_actividad,\n    descripcion_actividad,\n    codigo_recomendacion,\n    formato_solicitado,\n    fecha_fin_programada,\n    semaforo_estado\nFROM vista_seguimiento_global\nWHERE responsable_email = {{ appsmith.user.email }}\n  AND porcentaje_avance < 100\nORDER BY fecha_fin_programada ASC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

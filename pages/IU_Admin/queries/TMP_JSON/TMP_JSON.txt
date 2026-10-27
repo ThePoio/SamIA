@@ -1,0 +1,7 @@
+SELECT
+    coherencia_actividad_vs_recomendacion,
+    coherencia_evidencia_vs_actividad,
+    coherencia_formato_entregado
+FROM revisiones_asistente_ia
+ORDER BY procesado_en DESC
+LIMIT 3;

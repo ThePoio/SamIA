@@ -1,4 +1,4 @@
-SELECT 
+SELECT
     actividad_id,
     codigo_actividad,
     descripcion_actividad,
@@ -7,7 +7,6 @@ SELECT
     fecha_fin_programada,
     semaforo_estado
 FROM vista_seguimiento_global
-WHERE responsable_email = '{{ appsmith.user.email }}'
-   OR '{{ appsmith.user.email }}' = ''
-   OR responsable_email IS NOT NULL
+WHERE responsable_email = {{ appsmith.user.email }}
+  AND porcentaje_avance < 100
 ORDER BY fecha_fin_programada ASC;

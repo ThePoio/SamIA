@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n    e.id AS evidencia_id,\n    e.nombre_archivo,\n    a.codigo_actividad,\n    a.descripcion_actividad,\n    u.nombre AS responsable_nombre,\n    r.sugerencia_asistente,\n    e.fecha_carga\nFROM evidencias_documentales e\nJOIN actividades_comprometidas a ON e.actividad_id = a.id\nJOIN usuarios u ON e.usuario_id = u.id\nJOIN revisiones_asistente_ia r ON e.id = r.evidencia_id\nWHERE e.estado_revision = 'ANALIZADO_IA'\nORDER BY e.fecha_carga ASC;",
+      "body": "SELECT\n    e.id AS evidencia_id,\n    e.nombre_archivo,\n    a.codigo_actividad,\n    a.descripcion_actividad,\n    u.nombre AS responsable_nombre,\n    r.sugerencia_asistente,\n    e.fecha_carga\nFROM evidencias_documentales e\nJOIN actividades_comprometidas a ON a.id = e.actividad_id\nJOIN usuarios u ON u.id = e.usuario_id\nLEFT JOIN LATERAL (\n    SELECT sugerencia_asistente\n    FROM revisiones_asistente_ia\n    WHERE evidencia_id = e.id\n    ORDER BY procesado_en DESC\n    LIMIT 1\n) r ON TRUE\nWHERE e.estado_revision = 'ANALIZADO_IA'\nORDER BY e.fecha_carga ASC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

@@ -1,0 +1,3 @@
+UPDATE agenda_mejora
+SET estado_propuesta = '{{ this.params.nuevo_estado }}'
+WHERE id = '{{ this.params.propuesta_id }}'::uuid;

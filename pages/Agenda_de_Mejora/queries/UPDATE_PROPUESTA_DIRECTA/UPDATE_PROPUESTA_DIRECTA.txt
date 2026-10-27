@@ -1,0 +1,20 @@
+UPDATE agenda_mejora
+SET 
+    actividad_propuesta = COALESCE(
+        NULLIF('{{ Table_Agenda_Mejora.triggeredRow.actividad_propuesta.replace(/'/g, "''") }}', ''), 
+        actividad_propuesta
+    ),
+    plazo_dias_propuesto = COALESCE(
+        NULLIF('{{ Table_Agenda_Mejora.triggeredRow.plazo_dias_propuesto }}', '')::integer, 
+        plazo_dias_propuesto
+    ),
+    complejidad = COALESCE(
+        NULLIF('{{ Table_Agenda_Mejora.triggeredRow.complejidad }}', ''), 
+        complejidad
+    ),
+    area_id = COALESCE(
+        NULLIF('{{ Table_Agenda_Mejora.triggeredRow.area_id }}', '')::uuid, 
+        area_id
+    ),
+    estado_propuesta = 'EN_REVISION'
+WHERE id = '{{ Table_Agenda_Mejora.triggeredRow.propuesta_id }}'::uuid;

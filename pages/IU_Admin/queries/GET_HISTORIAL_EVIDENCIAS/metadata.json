@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n    e.id AS evidencia_id,\n    t.titulo AS tarea_titulo,\n    e.nombre_archivo,\n    e.estado AS estado_evidencia,\n    e.fecha_carga,\n    h.dictamen,\n    h.feedback_detallado,\n    h.evaluado_en\nFROM evidencias e\nJOIN tareas t ON e.tarea_id = t.id\nJOIN usuarios u ON e.usuario_id = u.id\nLEFT JOIN historial_revisiones h ON h.evidencia_id = e.id\nWHERE u.email = '{{ appsmith.user.email }}'\nORDER BY e.fecha_carga DESC;",
+      "body": "SELECT\n    e.id AS evidencia_id,\n    a.codigo_actividad,\n    a.descripcion_actividad,\n    e.nombre_archivo,\n    e.estado_revision AS estado_evidencia,\n    e.fecha_carga,\n    d.dictamen,\n    d.comentarios_auditor,\n    d.dictaminado_en\nFROM evidencias_documentales e\nJOIN actividades_comprometidas a ON a.id = e.actividad_id\nJOIN usuarios u ON u.id = e.usuario_id\nLEFT JOIN dictamenes_finales d ON d.evidencia_id = e.id\nWHERE u.email = {{ appsmith.user.email }}\nORDER BY e.fecha_carga DESC, d.dictaminado_en DESC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

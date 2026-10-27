@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n    id AS notificacion_id,\n    tipo_notificacion,\n    mensaje,\n    leido,\n    enviado_en\nFROM notificaciones_alertas\nWHERE usuario_destino_id = COALESCE(\n    (SELECT id FROM usuarios WHERE email = '{{ appsmith.user.email }}'),\n    'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'::uuid\n)\nORDER BY enviado_en DESC\nLIMIT 20;",
+      "body": "SELECT\n    n.id AS notificacion_id,\n    n.tipo_notificacion,\n    n.mensaje,\n    n.leido,\n    n.enviado_en\nFROM notificaciones_alertas n\nJOIN usuarios u ON u.id = n.usuario_destino_id\nWHERE u.email = {{ appsmith.user.email }}\nORDER BY n.enviado_en DESC\nLIMIT 20;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

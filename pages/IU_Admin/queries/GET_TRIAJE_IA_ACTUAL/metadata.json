@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n    r.id AS triaje_id,\n    e.nombre_archivo,\n    a.codigo_actividad,\n    a.descripcion_actividad,\n    r.coherencia_actividad_vs_recomendacion,\n    r.coherencia_evidencia_vs_actividad,\n    r.coherencia_formato_entregado,\n    r.alertas_inconsistencia,\n    r.sugerencia_asistente,\n    r.procesado_en\nFROM revisiones_asistente_ia r\nJOIN evidencias_documentales e ON r.evidencia_id = e.id\nJOIN actividades_comprometidas a ON e.actividad_id = a.id\nORDER BY r.procesado_en DESC\nLIMIT 1;",
+      "body": "SELECT\n    r.id AS triaje_id,\n    e.nombre_archivo,\n    a.codigo_actividad,\n    a.descripcion_actividad,\n    r.coherencia_actividad_vs_recomendacion,\n    r.coherencia_evidencia_vs_actividad,\n    r.coherencia_formato_entregado,\n    r.alertas_inconsistencia,\n    r.sugerencia_asistente,\n    r.procesado_en\nFROM revisiones_asistente_ia r\nJOIN evidencias_documentales e ON e.id = r.evidencia_id\nJOIN actividades_comprometidas a ON a.id = e.actividad_id\nJOIN usuarios u ON u.id = e.usuario_id\nWHERE u.email = {{ appsmith.user.email }}\nORDER BY r.procesado_en DESC\nLIMIT 1;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,7 +22,11 @@
       "name": "Postgres_AppDB",
       "pluginId": "postgres-plugin"
     },
-    "dynamicBindingPathList": [],
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "name": "GET_TRIAJE_IA_ACTUAL",
     "pageId": "IU_Admin",
     "runBehaviour": "MANUAL",
