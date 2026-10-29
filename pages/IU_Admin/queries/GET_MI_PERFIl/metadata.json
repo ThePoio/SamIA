@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "6ad26269b2c08ecf1b77268a_810119ba-b650-48b0-b524-13e40bd2c82d",
-  "id": "IU_Admin_TMP_JSON",
+  "gitSyncId": "6ad26269b2c08ecf1b77268a_8169c493-76b1-4ff1-97bb-443785fadb1c",
+  "id": "IU_Admin_GET_MI_PERFIl",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT\n    coherencia_actividad_vs_recomendacion,\n    coherencia_evidencia_vs_actividad,\n    coherencia_formato_entregado\nFROM revisiones_asistente_ia\nORDER BY procesado_en DESC\nLIMIT 3;",
+      "body": "SELECT nombre, rol, area_id\nFROM usuarios\nWHERE email = {{ appsmith.user.email }} AND activo;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,10 +22,14 @@
       "name": "Postgres_AppDB",
       "pluginId": "postgres-plugin"
     },
-    "dynamicBindingPathList": [],
-    "name": "TMP_JSON",
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
+    "name": "GET_MI_PERFIl",
     "pageId": "IU_Admin",
-    "runBehaviour": "MANUAL",
-    "userSetOnLoad": false
+    "runBehaviour": "ON_PAGE_LOAD",
+    "userSetOnLoad": true
   }
 }

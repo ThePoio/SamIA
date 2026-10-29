@@ -11,7 +11,8 @@ SELECT
     semaforo_estado,
     dias_retraso
 FROM vista_seguimiento_global
-ORDER BY 
+WHERE puede_ver_area({{ appsmith.user.email }}::text, area_id)
+ORDER BY
     CASE 
         WHEN semaforo_estado = 'ROJO_RETRASADO' THEN 1
         WHEN semaforo_estado = 'AMARILLO_RIESGO' THEN 2

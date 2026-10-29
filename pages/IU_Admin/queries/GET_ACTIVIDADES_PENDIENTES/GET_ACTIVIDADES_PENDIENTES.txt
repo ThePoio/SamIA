@@ -7,6 +7,6 @@ SELECT
     fecha_fin_programada,
     semaforo_estado
 FROM vista_seguimiento_global
-WHERE responsable_email = {{ appsmith.user.email }}
+WHERE puede_ver_area({{ appsmith.user.email }}::text, area_id)
   AND porcentaje_avance < 100
 ORDER BY fecha_fin_programada ASC;

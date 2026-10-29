@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 27,
+  "bottomRow": 25,
   "dynamicBindingPathList": [
     {
       "key": "truncateButtonColor"
@@ -33,8 +33,8 @@
   "mobileRightColumn": 25,
   "mobileTopRow": 22,
   "needsErrorInfo": false,
-  "originalBottomRow": 23,
-  "originalTopRow": 18,
+  "originalBottomRow": 25,
+  "originalTopRow": 20,
   "overflow": "NONE",
   "parentColumnSpace": 6.015625,
   "parentId": "0utzqrcai3",
@@ -46,7 +46,7 @@
   "text": "### 📝 Retroalimentación del Audit\n{{ GET_ULTIMA_EVALUACION.data[0]?.feedback_detallado || 'No hay observaciones registradas.' }}",
   "textAlign": "LEFT",
   "textColor": "#231F20",
-  "topRow": 18,
+  "topRow": 20,
   "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
   "type": "TEXT_WIDGET",
   "version": 1,

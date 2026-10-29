@@ -1,0 +1,3 @@
+SELECT nombre, rol, area_id
+FROM usuarios
+WHERE email = {{ appsmith.user.email }} AND activo;

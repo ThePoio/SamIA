@@ -22,6 +22,9 @@ SELECT
     r.alertas_inconsistencia,
     r.procesado_en
 FROM revisiones_asistente_ia r
+JOIN evidencias_documentales e ON e.id = r.evidencia_id
+JOIN actividades_comprometidas a ON a.id = e.actividad_id
 WHERE r.evidencia_id = {{ Select_Evidencia_Pendiente.selectedOptionValue || null }}::uuid
+  AND puede_ver_area({{ appsmith.user.email }}::text, a.area_responsable_id)
 ORDER BY r.procesado_en DESC
 LIMIT 1;

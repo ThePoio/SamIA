@@ -18,7 +18,7 @@ export default {
             showAlert('Dictamen emitido exitosamente.', 'success');
 
             // Refrescar paneles de la interfaz
-            await GET_EVIDENCIAS_PENDIENTES_DICT.run();
+            await GET_ACTIVIDADES_PENDIENTES.run();
             await GET_DASHBOARD_SEGUIMIENTO.run();
             
             resetWidget('Input_Comentarios_Auditor');

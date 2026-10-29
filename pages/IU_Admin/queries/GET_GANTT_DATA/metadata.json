@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n    actividad_id,\n    codigo_actividad,\n    descripcion_actividad,\n    area_nombre,\n    responsable_nombre,\n    TO_CHAR(fecha_inicio, 'YYYY-MM-DD') AS fecha_inicio,\n    TO_CHAR(fecha_fin_programada, 'YYYY-MM-DD') AS fecha_fin_programada,\n    porcentaje_avance,\n    semaforo_estado,\n    (fecha_fin_programada - fecha_inicio) AS duracion_dias\nFROM vista_seguimiento_global\nORDER BY fecha_inicio ASC;",
+      "body": "SELECT \n    actividad_id,\n    codigo_actividad,\n    descripcion_actividad,\n    area_nombre,\n    responsable_nombre,\n    TO_CHAR(fecha_inicio, 'YYYY-MM-DD') AS fecha_inicio,\n    TO_CHAR(fecha_fin_programada, 'YYYY-MM-DD') AS fecha_fin_programada,\n    porcentaje_avance,\n    semaforo_estado,\n    (fecha_fin_programada - fecha_inicio) AS duracion_dias\nFROM vista_seguimiento_global\nWHERE puede_ver_area({{ appsmith.user.email }}::text, area_id)\nORDER BY fecha_inicio ASC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,7 +22,11 @@
       "name": "Postgres_AppDB",
       "pluginId": "postgres-plugin"
     },
-    "dynamicBindingPathList": [],
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "name": "GET_GANTT_DATA",
     "pageId": "IU_Admin",
     "runBehaviour": "AUTOMATIC",

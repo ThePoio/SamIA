@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO evidencias_documentales (\n    actividad_id,\n    usuario_id,\n    nombre_archivo,\n    ruta_almacenamiento,\n    tipo_mime,\n    estado_revision\n)\nSELECT\n    {{ Select_Actividad.selectedOptionValue || null }}::uuid,\n    u.id,\n    {{ FilePicker_Evidencia.files[0].name }}::text,\n    '/storage/evidencias/' || gen_random_uuid()::text || '_'\n        || regexp_replace({{ FilePicker_Evidencia.files[0].name }}::text, '[^A-Za-z0-9._-]', '_', 'g'),\n    {{ FilePicker_Evidencia.files[0].type }}::text,\n    'PENDIENTE'\nFROM usuarios u\nWHERE u.email = {{ appsmith.user.email }}\nRETURNING id AS evidencia_id, actividad_id;",
+      "body": "INSERT INTO evidencias_documentales (\n    actividad_id,\n    usuario_id,\n    nombre_archivo,\n    ruta_almacenamiento,\n    tipo_mime,\n    estado_revision\n)\nSELECT\n    {{ Select_Actividad.selectedOptionValue || null }}::uuid,\n    u.id,\n    {{ FilePicker_Evidencia.files[0].name }}::text,\n    '/storage/evidencias/' || gen_random_uuid()::text || '_'\n        || regexp_replace({{ FilePicker_Evidencia.files[0].name }}::text, '[^A-Za-z0-9._-]', '_', 'g'),\n    {{ FilePicker_Evidencia.files[0].type }}::text,\n    'PENDIENTE'\nFROM usuarios u\nWHERE u.email = {{ appsmith.user.email }}\n  AND u.activo\n  AND EXISTS (\n      SELECT 1 FROM actividades_comprometidas a\n      WHERE a.id = {{ Select_Actividad.selectedOptionValue || null }}::uuid\n        AND puede_ver_area({{ appsmith.user.email }}::text, a.area_responsable_id)\n  )\nRETURNING id AS evidencia_id, actividad_id;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

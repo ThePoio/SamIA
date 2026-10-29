@@ -14,6 +14,9 @@
     },
     {
       "key": "sourceData"
+    },
+    {
+      "key": "optionValue"
     }
   ],
   "dynamicHeight": "FIXED",
@@ -50,9 +53,9 @@
   "mobileTopRow": 23,
   "needsErrorInfo": false,
   "optionLabel": "codigo_actividad",
-  "optionValue": "actividad_id",
-  "originalBottomRow": 101,
-  "originalTopRow": 94,
+  "optionValue": "{{Select_Actividad.sourceData.map((item) => ('{{}}'))}}",
+  "originalBottomRow": 100,
+  "originalTopRow": 93,
   "parentColumnSpace": 20.25,
   "parentId": "0",
   "parentRowSpace": 10,
@@ -61,7 +64,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 16,
   "serverSideFiltering": false,
-  "sourceData": "{{ GET_ACTIVIDADES_PENDIENTES.data }}",
+  "sourceData": "{{ GET_ACTIVIDADES_PENDIENTES.data.data }}",
   "topRow": 93,
   "type": "SELECT_WIDGET",
   "version": 1,

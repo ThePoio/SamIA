@@ -27,7 +27,7 @@ export default {
 
             // 3. Refrescar interfaz
             await GET_TRIAJE_IA_ACTUAL.run();
-            await GET_ACTIVIDADES_PENDIENTES.run();
+            await GET_EVIDENCIAS_PEND_DICTAMEN.run();
             resetWidget('FilePicker_Evidencia');
 
         } catch (error) {

@@ -1,6 +1,7 @@
 SELECT
     e.id AS evidencia_id,
     e.nombre_archivo,
+    ar.nombre AS area_nombre,
     a.codigo_actividad,
     a.descripcion_actividad,
     u.nombre AS responsable_nombre,
@@ -8,6 +9,7 @@ SELECT
     e.fecha_carga
 FROM evidencias_documentales e
 JOIN actividades_comprometidas a ON a.id = e.actividad_id
+JOIN areas ar ON ar.id = a.area_responsable_id
 JOIN usuarios u ON u.id = e.usuario_id
 LEFT JOIN LATERAL (
     SELECT sugerencia_asistente
@@ -17,4 +19,7 @@ LEFT JOIN LATERAL (
     LIMIT 1
 ) r ON TRUE
 WHERE e.estado_revision = 'ANALIZADO_IA'
+  AND puede_ver_area({{ appsmith.user.email }}::text, a.area_responsable_id)
+  AND ({{ Select_Area_Filtro.selectedOptionValue || null }}::uuid IS NULL
+       OR a.area_responsable_id = {{ Select_Area_Filtro.selectedOptionValue || null }}::uuid)
 ORDER BY e.fecha_carga ASC;

@@ -16,4 +16,10 @@ SELECT
     'PENDIENTE'
 FROM usuarios u
 WHERE u.email = {{ appsmith.user.email }}
+  AND u.activo
+  AND EXISTS (
+      SELECT 1 FROM actividades_comprometidas a
+      WHERE a.id = {{ Select_Actividad.selectedOptionValue || null }}::uuid
+        AND puede_ver_area({{ appsmith.user.email }}::text, a.area_responsable_id)
+  )
 RETURNING id AS evidencia_id, actividad_id;
